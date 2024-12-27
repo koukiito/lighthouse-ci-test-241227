@@ -21,7 +21,7 @@ jobs:
           yarn run build
       - name: start preview server
         run: |
-          yarn preview
+          yarn preview &
       - name: run Lighthouse CI
         run: |
           yarn lhci autorun
