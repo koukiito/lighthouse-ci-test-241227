@@ -1,0 +1,14 @@
+{
+  "ci": {
+    "upload": {
+      "target": "temporary-public-storage"
+    },
+    "collect": {
+      "settings": {
+        "preset": "desktop"
+      },
+      "numberOfRuns": 2,
+      "url": ["http://localhost:4173/"]
+    }
+  }
+}
