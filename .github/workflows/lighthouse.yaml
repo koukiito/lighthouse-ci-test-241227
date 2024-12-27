@@ -1,0 +1,29 @@
+name: Lighthouse
+on: [push]
+jobs:
+  lhci:
+    name: Lighthouse
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./vite-project
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+      - name: yarn install, build
+        run: |
+          yarn install
+          yarn run build
+      - name: start preview server
+        run: |
+          yarn preview
+      - name: run Lighthouse CI
+        run: |
+          yarn lhci autorun
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
